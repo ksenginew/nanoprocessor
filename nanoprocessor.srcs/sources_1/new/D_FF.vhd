@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 04/26/2026 10:33:49 AM
+-- Create Date: 04/26/2026 11:20:36 AM
 -- Design Name: 
--- Module Name: Decoder_2_to_4 - Behavioral
+-- Module Name: D_FF - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,18 +31,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity Decoder_2_to_4 is
-    Port ( I : in STD_LOGIC_VECTOR (1 downto 0);
+entity D_FF is
+    Port ( D : in STD_LOGIC;
+           Res : in STD_LOGIC;
+           Clk : in STD_LOGIC;
            EN : in STD_LOGIC;
-           Y : out STD_LOGIC_VECTOR (3 downto 0));
-end Decoder_2_to_4;
+           Q : out STD_LOGIC);
+end D_FF;
 
-architecture Behavioral of Decoder_2_to_4 is
-
+architecture Behavioral of D_FF is
+   
+    signal q_reg : STD_LOGIC;
+    
 begin
-   Y(0) <= NOT(I(0)) AND NOT(I(1)) AND EN;
-   Y(1) <= I(0) AND NOT(I(1)) AND EN;
-   Y(2) <= NOT(I(0)) AND (I(1)) AND EN;
-   Y(3) <= (I(0)) AND (I(1)) AND EN;
+  process(Clk, Res)
+    begin
+        if Res = '1' then
+            q_reg <= '0';
+
+        elsif rising_edge(Clk) then
+            if EN = '1' then
+                q_reg <= D;
+            end if;
+        end if;
+    end process;
+
+    Q <= q_reg;
 
 end Behavioral;
