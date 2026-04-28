@@ -38,14 +38,14 @@ entity Reg_Bank is
         Res      : in  STD_LOGIC;
         Reg_sel  : in  STD_LOGIC_VECTOR(2 downto 0);
         Write_EN : in  STD_LOGIC;
-        R1   : out STD_LOGIC_VECTOR;
-        R2   : out STD_LOGIC_VECTOR;
-        R3   : out STD_LOGIC_VECTOR;
-        R4   : out STD_LOGIC_VECTOR;
-        R5   : out STD_LOGIC_VECTOR;
-        R6   : out STD_LOGIC_VECTOR;
-        R7   : out STD_LOGIC_VECTOR;
-        R0   : out STD_LOGIC_VECTOR);
+        R1   : out STD_LOGIC_VECTOR(3 downto 0);
+        R2   : out STD_LOGIC_VECTOR(3 downto 0);
+        R3   : out STD_LOGIC_VECTOR(3 downto 0);
+        R4   : out STD_LOGIC_VECTOR(3 downto 0);
+        R5   : out STD_LOGIC_VECTOR(3 downto 0);
+        R6   : out STD_LOGIC_VECTOR(3 downto 0);
+        R7   : out STD_LOGIC_VECTOR(3 downto 0);
+        R0   : out STD_LOGIC_VECTOR(3 downto 0));
 end Reg_Bank;
 
 architecture Behavioral of Reg_Bank is
