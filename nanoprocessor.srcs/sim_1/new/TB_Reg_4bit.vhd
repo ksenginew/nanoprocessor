@@ -62,10 +62,12 @@ begin
          Q => Q);
    process
       begin 
-        Clk <= '0';
-        wait for 50ns;
-        Clk <= '1';
-        wait for 50ns;
+          while true loop
+             Clk <= '0';
+             wait for 50ns;
+             Clk <= '1';
+             wait for 50ns;
+          end loop;
    end process;
    
    process
