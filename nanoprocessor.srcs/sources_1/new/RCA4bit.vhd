@@ -36,7 +36,6 @@ entity RCA4bit is
            B : in STD_LOGIC_VECTOR (3 downto 0);
            C_in : in STD_LOGIC;
            SUM : out STD_LOGIC_VECTOR (3 downto 0);
-           C_out : out STD_LOGIC;
            Zero : out STD_LOGIC;
            OverFlow : out STD_LOGIC);
 end RCA4bit;
@@ -96,7 +95,6 @@ begin
     
     SUM <= res;  
     OverFlow <= C(4) xor C(3);
-    C_out <= C(4);
     Zero <= not(res(0) or res(1) or res(2) or res(3));
 
 end Behavioral;

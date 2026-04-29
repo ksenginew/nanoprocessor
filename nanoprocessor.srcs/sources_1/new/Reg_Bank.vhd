@@ -67,7 +67,6 @@ architecture Behavioral of Reg_Bank is
      end component;
 
      signal EN_lines : STD_LOGIC_VECTOR(7 downto 0);
-
    
 begin
   Decoder: Decoder_3_to_8
@@ -133,6 +132,5 @@ begin
         Res => Res, 
         Clk => Clk, 
         Q => R7);
-  
   
 end Behavioral;

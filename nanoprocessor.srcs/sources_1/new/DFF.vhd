@@ -39,7 +39,7 @@ entity DFF is
 end DFF;
 
 architecture Behavioral of DFF is
-    signal Q_reg : std_logic := '0';
+    signal Q_reg : std_logic;
 
 begin
     process (CLK, RESET)
