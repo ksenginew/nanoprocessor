@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,51 +30,55 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Adder3bits is
-    Port ( A : in STD_LOGIC_VECTOR (2 downto 0);
-           E : out STD_LOGIC_VECTOR (2 downto 0));
+    port (
+        A : in std_logic_vector (2 downto 0);
+        E : out std_logic_vector (2 downto 0));
 end Adder3bits;
 
 architecture Behavioral of Adder3bits is
-signal B : std_logic_vector (2 downto 0) := "001";
-signal C : std_logic_vector (2 downto 0);
+    signal B : std_logic_vector (2 downto 0) := "001";
+    signal C : std_logic_vector (2 downto 0);
 
     component FA
-        port(
-            A : in std_logic;
-            B : in std_logic;
-            C_in : in std_logic;
-            SUM : out std_logic;
+        port (
+            A     : in std_logic;
+            B     : in std_logic;
+            C_in  : in std_logic;
+            SUM   : out std_logic;
             C_out : out std_logic
         );
     end component;
-    
+
 begin
-    
+
     FA0 : FA
-        port map(
-            A => A(0),
-            B => B(0),
-            C_in => '0',
-            SUM => E(0),
-            C_out => C(0)
-        );
-    
+    port map
+    (
+        A     => A(0),
+        B     => B(0),
+        C_in  => '0',
+        SUM   => E(0),
+        C_out => C(0)
+    );
+
     FA1 : FA
-        port map(
-            A => A(1),
-            B => B(1),
-            C_in => C(0),
-            SUM => E(1),
-            C_out => C(1)
-        );
-        
+    port map
+    (
+        A     => A(1),
+        B     => B(1),
+        C_in  => C(0),
+        SUM   => E(1),
+        C_out => C(1)
+    );
+
     FA2 : FA
-        port map(
-            A => A(2),
-            B => B(2),
-            C_in => C(1),
-            SUM => E(2),
-            C_out => C(2)
-        );
- 
+    port map
+    (
+        A     => A(2),
+        B     => B(2),
+        C_in  => C(1),
+        SUM   => E(2),
+        C_out => C(2)
+    );
+
 end Behavioral;

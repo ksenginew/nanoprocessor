@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,40 +30,45 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Instruction_Decoder is
-    Port ( 
+    port (
         -- Inputs
-        Instruction    : in  STD_LOGIC_VECTOR (11 downto 0); -- 12-bit instruction
-        Zero_Flag      : in  STD_LOGIC;                      -- Zero flag from the 4-bit Add/Sub unit
-        
+        Instruction : in std_logic_vector (11 downto 0); -- 12-bit instruction
+        Zero_Flag   : in std_logic; -- Zero flag from the 4-bit Add/Sub unit
+
         -- Outputs to Datapath components
-        Load_Sel       : out STD_LOGIC;                      -- Selects Immediate (1) or ALU Output (0)
-        Add_Sub_Sel    : out STD_LOGIC;                      -- Selects Subtract (1) or Add (0)
-        Write_Enable   : out STD_LOGIC;                      -- Enables writing to the Register Bank
-        Reg_En         : out STD_LOGIC_VECTOR (2 downto 0);  -- Destination Register address
-        Reg_Sel_A      : out STD_LOGIC_VECTOR (2 downto 0);  -- Source Register 1 address (Mux A)
-        Reg_Sel_B      : out STD_LOGIC_VECTOR (2 downto 0);  -- Source Register 2 address (Mux B)
-        Imm_Val        : out STD_LOGIC_VECTOR (3 downto 0);  -- 4-bit Immediate value
-        Jump_Addr      : out STD_LOGIC_VECTOR (2 downto 0);  -- Address to jump to
-        Jump_Flag      : out STD_LOGIC                       -- Triggers the PC to jump
+        Load_Sel     : out std_logic;
+        Add_Sub_Sel  : out std_logic;
+        Write_Enable : out std_logic;
+        Reg_En       : out std_logic_vector (2 downto 0);
+        Reg_Sel_A    : out std_logic_vector (2 downto 0);
+        Reg_Sel_B    : out std_logic_vector (2 downto 0);
+        Imm_Val      : out std_logic_vector (3 downto 0);
+        Jump_Addr    : out std_logic_vector (2 downto 0);
+        Jump_Flag    : out std_logic
     );
 end Instruction_Decoder;
 
 architecture Behavioral of Instruction_Decoder is
+
+    signal Temp_Jump : std_logic;
+
 begin
     -- Control Bits
-    Load_Sel    <= Instruction(11); 
-    Add_Sub_Sel <= Instruction(10); 
-    
+    Load_Sel    <= Instruction(11);
+    Add_Sub_Sel <= Instruction(10);
+
     -- Data and Address Bits
-    Reg_En      <= Instruction(8 downto 6); -- rd
-    Jump_Addr   <= Instruction(8 downto 6); -- addr
-    Reg_Sel_A   <= Instruction(5 downto 3); -- rs1
-    Reg_Sel_B   <= Instruction(2 downto 0); -- rs2
-    Imm_Val     <= Instruction(3 downto 0); -- imm
+    Reg_En    <= Instruction(9 downto 7); -- rd
+    Jump_Addr <= Instruction(9 downto 7); -- addr
+    Reg_Sel_A <= Instruction(6 downto 4); -- rs1
+    Reg_Sel_B <= Instruction(3 downto 1); -- rs2
+    Imm_Val   <= Instruction(3 downto 0); -- imm
+
+    Temp_Jump <= Instruction(11) and Instruction(10);
 
     -- JUMP FLAG
-    Jump_Flag <= Instruction(9) and Zero_Flag;
+    Jump_Flag <= Temp_Jump and Zero_Flag;
 
     -- WRITE ENABLE 
-    Write_Enable <= not Instruction(9);
+    Write_Enable <= not Temp_Jump;
 end Behavioral;

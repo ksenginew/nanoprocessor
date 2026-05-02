@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,10 +30,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity DFF is
-    Port ( D : in STD_LOGIC;
-           CLK : in STD_LOGIC;
-           RESET : in STD_LOGIC;
-           Q : out STD_LOGIC);
+    port (
+        D     : in std_logic;
+        CLK   : in std_logic;
+        RESET : in std_logic;
+        Q     : out std_logic);
 end DFF;
 
 architecture Behavioral of DFF is
@@ -43,12 +42,12 @@ architecture Behavioral of DFF is
 
 begin
     process (CLK, RESET)
-    begin 
-    if RESET = '1' then
-        Q_reg <= '0';
-    elsif rising_edge(CLK) then
-        Q_reg <= D;
-    end if;
+    begin
+        if RESET = '1' then
+            Q_reg <= '0';
+        elsif rising_edge(CLK) then
+            Q_reg <= D;
+        end if;
     end process;
     Q <= Q_reg;
 end Behavioral;

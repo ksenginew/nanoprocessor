@@ -17,14 +17,12 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -32,36 +30,38 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity TB_MUX_8_way_4_bit is
---  Port ( );
+    --  Port ( );
 end TB_MUX_8_way_4_bit;
 
 architecture Behavioral of TB_MUX_8_way_4_bit is
     component MUX_8_way_4_bit is
-        Port ( S : in STD_LOGIC_VECTOR;
-               R0 : in STD_LOGIC_VECTOR;
-               R1 : in STD_LOGIC_VECTOR;
-               R2 : in STD_LOGIC_VECTOR;
-               R3 : in STD_LOGIC_VECTOR;
-               R4 : in STD_LOGIC_VECTOR;
-               R5 : in STD_LOGIC_VECTOR;
-               R6 : in STD_LOGIC_VECTOR;
-               R7 : in STD_LOGIC_VECTOR;
-               Q : out STD_LOGIC_VECTOR);
+        port (
+            S  : in std_logic_vector;
+            R0 : in std_logic_vector;
+            R1 : in std_logic_vector;
+            R2 : in std_logic_vector;
+            R3 : in std_logic_vector;
+            R4 : in std_logic_vector;
+            R5 : in std_logic_vector;
+            R6 : in std_logic_vector;
+            R7 : in std_logic_vector;
+            Q  : out std_logic_vector);
     end component;
-    signal S : std_logic_vector(2 downto 0);
-    signal Q,R0,R1,R2,R3,R4,R5,R6,R7 : std_logic_vector (3 downto 0);
+    signal S                                 : std_logic_vector(2 downto 0);
+    signal Q, R0, R1, R2, R3, R4, R5, R6, R7 : std_logic_vector (3 downto 0);
 begin
-    uut: MUX_8_way_4_bit port map(
-        S => S,
-        R0 => R0,
-        R1 => R1,
-        R2 => R2,
-        R3 => R3,
-        R4 => R4,
-        R5 => R5,
-        R6 => R6,
-        R7 => R7,
-        Q => Q);
+    uut : MUX_8_way_4_bitPORT
+    map(
+    S  => S,
+    R0 => R0,
+    R1 => R1,
+    R2 => R2,
+    R3 => R3,
+    R4 => R4,
+    R5 => R5,
+    R6 => R6,
+    R7 => R7,
+    Q  => Q);
     process
     begin
         R0 <= "0000";
@@ -73,7 +73,7 @@ begin
         R6 <= "0110";
         R7 <= "0111";
         for i in 0 to 7 loop
-            S <= std_logic_vector(to_unsigned(i,3));
+            S <= std_logic_vector(to_unsigned(i, 3));
             wait for 100ns;
         end loop;
         wait;

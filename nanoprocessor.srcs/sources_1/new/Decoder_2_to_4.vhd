@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,17 +30,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Decoder_2_to_4 is
-    Port ( I : in STD_LOGIC_VECTOR (1 downto 0);
-           EN : in STD_LOGIC;
-           Y : out STD_LOGIC_VECTOR (3 downto 0));
+    port (
+        I  : in std_logic_vector (1 downto 0);
+        EN : in std_logic;
+        Y  : out std_logic_vector (3 downto 0));
 end Decoder_2_to_4;
 
 architecture Behavioral of Decoder_2_to_4 is
 
 begin
-   Y(0) <= NOT(I(0)) AND NOT(I(1)) AND EN;
-   Y(1) <= I(0) AND NOT(I(1)) AND EN;
-   Y(2) <= NOT(I(0)) AND (I(1)) AND EN;
-   Y(3) <= (I(0)) AND (I(1)) AND EN;
+    Y(0) <= not(I(0)) and not(I(1)) and EN;
+    Y(1) <= I(0) and not(I(1)) and EN;
+    Y(2) <= not(I(0)) and (I(1)) and EN;
+    Y(3) <= (I(0)) and (I(1)) and EN;
 
 end Behavioral;

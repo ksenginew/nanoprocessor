@@ -71,19 +71,18 @@ begin
         Anode    => Anode
     );
     
-    Clk_process :process
-    begin
-        Clk <= '0';
-        wait for Clk_period/2;
-        Clk <= '1';
-        wait for Clk_period/2;
-    end process;
-    
-    stim_proc: process
-    begin
-        Reset <= '1';
-        wait for 100 ns;  
-        
+    Clk_process : process
+begin
+    Clk <= '0';
+    wait for Clk_period/2;
+    Clk <= '1';
+    wait for Clk_period/2;
+end process;
+
+stim_proc : process
+begin
+    Reset <= '1';
+    wait for 100 ns;
         Reset <= '0';
         
         wait for 2000 ns; 

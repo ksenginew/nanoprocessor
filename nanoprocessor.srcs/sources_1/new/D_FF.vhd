@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,19 +30,20 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity D_FF is
-    Port ( D : in STD_LOGIC;
-           Res : in STD_LOGIC;
-           Clk : in STD_LOGIC;
-           EN : in STD_LOGIC;
-           Q : out STD_LOGIC);
+    port (
+        D   : in std_logic;
+        Res : in std_logic;
+        Clk : in std_logic;
+        EN  : in std_logic;
+        Q   : out std_logic);
 end D_FF;
 
 architecture Behavioral of D_FF is
-   
-    signal q_reg : STD_LOGIC;
-    
+
+    signal q_reg : std_logic;
+
 begin
-  process(Clk, Res)
+    process (Clk, Res)
     begin
         if Res = '1' then
             q_reg <= '0';

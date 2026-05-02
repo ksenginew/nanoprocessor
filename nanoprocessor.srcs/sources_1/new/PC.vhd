@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,45 +30,49 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity PC is
-    Port ( CLK : in STD_LOGIC;
-           RESET : in STD_LOGIC;
-           PC_in : in STD_LOGIC_VECTOR (2 downto 0);
-           PC_out : out STD_LOGIC_VECTOR (2 downto 0));
+    port (
+        CLK    : in std_logic;
+        RESET  : in std_logic;
+        PC_in  : in std_logic_vector (2 downto 0);
+        PC_out : out std_logic_vector (2 downto 0));
 end PC;
 
 architecture Structural of PC is
     component DFF
-        port(
-            D : in STD_LOGIC;
-            CLK : in std_logic;
+        port (
+            D     : in std_logic;
+            CLK   : in std_logic;
             RESET : in std_logic;
-            Q : out std_logic
-            );
-     end component;
-     
+            Q     : out std_logic
+        );
+    end component;
+
 begin
     FF0 : DFF
-        port map(
-            D => PC_in(0),
-            CLK => CLK,
-            RESET => RESET,
-            Q => PC_out(0)
-            );
-    
-    FF1 : DFF 
-    port map (
-        D => PC_in(1),
-        CLK => CLK,
+    port map
+    (
+        D     => PC_in(0),
+        CLK   => CLK,
         RESET => RESET,
-        Q => PC_out(1)
-        );
-        
+        Q     => PC_out(0)
+    );
+
+    FF1 : DFF
+    port map
+    (
+        D     => PC_in(1),
+        CLK   => CLK,
+        RESET => RESET,
+        Q     => PC_out(1)
+    );
+
     FF2 : DFF
-    port map(
-        D => PC_in(2),
-        CLK => CLK,
+    port map
+    (
+        D     => PC_in(2),
+        CLK   => CLK,
         RESET => RESET,
-        Q => PC_out(2)
-        );
+        Q     => PC_out(2)
+    );
 
 end Structural;

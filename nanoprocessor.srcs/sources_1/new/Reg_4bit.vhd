@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,60 +30,65 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Reg_4bit is
-    Port ( D : in STD_LOGIC_VECTOR (3 downto 0);
-           EN : in STD_LOGIC;
-           Res : in STD_LOGIC;
-           Clk : in STD_LOGIC;
-           Q : out STD_LOGIC_VECTOR (3 downto 0));
+    port (
+        D   : in std_logic_vector (3 downto 0);
+        EN  : in std_logic;
+        Res : in std_logic;
+        Clk : in std_logic;
+        Q   : out std_logic_vector (3 downto 0));
 end Reg_4bit;
 
 architecture Behavioral of Reg_4bit is
-   
-   component D_FF
-        Port (
-            D     : in  STD_LOGIC;
-            Res : in  STD_LOGIC;
-            Clk   : in  STD_LOGIC;
-            EN    : in  STD_LOGIC;
-            Q     : out STD_LOGIC
+
+    component D_FF
+        port (
+            D   : in std_logic;
+            Res : in std_logic;
+            Clk : in std_logic;
+            EN  : in std_logic;
+            Q   : out std_logic
         );
     end component;
-    
-    signal q_internal : STD_LOGIC_VECTOR(3 downto 0);
-    
-begin
-   D_FF_0: D_FF
-       port map(
-           D   => D(0),
-           Res => Res,
-           Clk => Clk,
-           EN  => EN,
-           Q   => q_internal(0));
-           
-   D_FF_1: D_FF 
-       port map(
-           D => D(1),
-           Res => Res,
-           Clk => Clk,
-           EN  => EN,
-           Q   => q_internal(1));
-           
-   D_FF_2: D_FF 
-       port map(
-           D => D(2),
-           Res => Res,
-           Clk => Clk,
-           EN  => EN,
-           Q   => q_internal(2));
-           
-   D_FF_3: D_FF 
-        port map(
-           D => D(3),
-           Res => Res,
-           Clk => Clk,
-           EN  => EN,
-           Q   => q_internal(3));
 
-   Q <= q_internal;
+    signal q_internal : std_logic_vector(3 downto 0);
+
+begin
+    D_FF_0 : D_FF
+    port map
+    (
+        D   => D(0),
+        Res => Res,
+        Clk => Clk,
+        EN  => EN,
+        Q   => q_internal(0));
+
+    D_FF_1 : D_FF
+    port map
+    (
+        D   => D(1),
+        Res => Res,
+        Clk => Clk,
+        EN  => EN,
+        Q   => q_internal(1));
+
+    D_FF_2 : D_FF
+    port map
+    (
+        D   => D(2),
+        Res => Res,
+        Clk => Clk,
+        EN  => EN,
+        Q   => q_internal(2));
+
+    D_FF_3 : D_FF
+    port map
+    (
+        D   => D(3),
+        Res => Res,
+        Clk => Clk,
+        EN  => EN,
+        Q   => q_internal(3));
+
+    Q <= q_internal;
 
 end Behavioral;

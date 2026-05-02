@@ -17,14 +17,12 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -32,26 +30,27 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Rom is
-    Port ( Ins_S : in STD_LOGIC_VECTOR (2 downto 0);
-           Ins_Out : out STD_LOGIC_VECTOR (11 downto 0));
+    port (
+        Ins_S   : in std_logic_vector (2 downto 0);
+        Ins_Out : out std_logic_vector (11 downto 0));
 end Rom;
 
 architecture Behavioral of Rom is
 
-type Rom_Type is array (7 downto 0) of std_logic_vector (11 downto 0);
+    type Rom_Type is array (7 downto 0) of std_logic_vector (11 downto 0);
 
--- Constant forces Distributed ROM instead of Block RAM.
-constant Ins_Rom : Rom_Type := (
-  0  => "100111000000", -- MOVI R7, 0
-    1  => "100001000011", -- MOVI R1, 3
-    2  => "100010000001", -- MOVI R2, 1
-    3  => "010010000010", -- NEG R2
-    4  => "000111111001", -- ADD R7, R1
-    5  => "000001001010", -- ADD R1, R2
-    6  => "001000001000", -- JZR R1, 8
-    7  => "001100000000", -- JZR R0, 4
+    -- Constant forces Distributed ROM instead of Block RAM.
+    constant Ins_Rom : Rom_Type := (
+    0      => "100010000011",
+    1      => "000100000000",
+    2      => "100100100001",
+    3      => "100010011111",
+    4      => "111100010000",
+    5      => "110100000000",
+    6      => "000100100100",
+    7      => "000000000000",
     others => "000000000000"
-);
+    );
 
 begin
 

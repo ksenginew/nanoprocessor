@@ -183,8 +183,7 @@ architecture Behavioral of Nanoprocessor is
     signal Jump_Addr    : std_logic_vector (2 downto 0);
     signal Jump_Flag    : std_logic;
 
-    -- Output Mux for Register Bank and Immediate Value
-    signal Mux_Out : std_logic_vector (3 downto 0);
+    signal Mux_In : std_logic_vector (3 downto 0);
 begin
 
     Clock : clock_divider
@@ -244,7 +243,7 @@ begin
     Reg_Bank_Comp : Reg_Bank
     port map
     (
-        D        => Mux_Out,
+        D        => ALU_Result,
         Clk      => Slow_Clk,
         Res      => Reset,
         Reg_sel  => Reg_En,
@@ -285,7 +284,7 @@ begin
         R5 => R5,
         R6 => R6,
         R7 => R7,
-        Q  => Adder_B);
+        Q  => Mux_In);
 
     Adder_Sub_Comp : Add_Sub_4bit
     port map
@@ -301,10 +300,10 @@ begin
     Mux_2_4_Comp : MUX_2_way_4_bit
     port map
     (
-        A => ALU_Result,
+        A => Mux_In,
         B => Imm_Val,
         S => Load_Sel,
-        Q => Mux_Out
+        Q => Adder_B
     );
 
     LUT_Comp : LUT_16_7
@@ -314,8 +313,7 @@ begin
         data    => Out_SS
     );
 
-    Anode <= "1110";
-
+    Anode   <= "1110";
     Zero    <= Zero_Flag;
     Out_LED <= R7;
 end Behavioral;

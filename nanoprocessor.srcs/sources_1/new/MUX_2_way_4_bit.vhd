@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,17 +30,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity MUX_2_way_4_bit is
-    Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
-           B : in STD_LOGIC_VECTOR (3 downto 0);
-           S : in STD_LOGIC;
-           Q : out STD_LOGIC_VECTOR (3 downto 0));
+    port (
+        A : in std_logic_vector (3 downto 0);
+        B : in std_logic_vector (3 downto 0);
+        S : in std_logic;
+        Q : out std_logic_vector (3 downto 0));
 end MUX_2_way_4_bit;
 
 architecture Behavioral of MUX_2_way_4_bit is
 
 begin
-    Q(0) <= (A(0) AND (NOT S)) OR (B(0) AND S);
-    Q(1) <= (A(1) AND (NOT S)) OR (B(1) AND S);
-    Q(2) <= (A(2) AND (NOT S)) OR (B(2) AND S);
-    Q(3) <= (A(3) AND (NOT S)) OR (B(3) AND S);
+    Q(0) <= (A(0) and (not S)) or (B(0) and S);
+    Q(1) <= (A(1) and (not S)) or (B(1) and S);
+    Q(2) <= (A(2) and (not S)) or (B(2) and S);
+    Q(3) <= (A(3) and (not S)) or (B(3) and S);
 end Behavioral;

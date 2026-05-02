@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,39 +30,41 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity MUX_8_way_4_bit is
-    Port ( S : in STD_LOGIC_VECTOR (2 downto 0);
-           R0 : in STD_LOGIC_VECTOR (3 downto 0);
-           R1 : in STD_LOGIC_VECTOR (3 downto 0);
-           R2 : in STD_LOGIC_VECTOR (3 downto 0);
-           R3 : in STD_LOGIC_VECTOR (3 downto 0);
-           R4 : in STD_LOGIC_VECTOR (3 downto 0);
-           R5 : in STD_LOGIC_VECTOR (3 downto 0);
-           R6 : in STD_LOGIC_VECTOR (3 downto 0);
-           R7 : in STD_LOGIC_VECTOR (3 downto 0);
-           Q : out STD_LOGIC_VECTOR (3 downto 0));
+    port (
+        S  : in std_logic_vector (2 downto 0);
+        R0 : in std_logic_vector (3 downto 0);
+        R1 : in std_logic_vector (3 downto 0);
+        R2 : in std_logic_vector (3 downto 0);
+        R3 : in std_logic_vector (3 downto 0);
+        R4 : in std_logic_vector (3 downto 0);
+        R5 : in std_logic_vector (3 downto 0);
+        R6 : in std_logic_vector (3 downto 0);
+        R7 : in std_logic_vector (3 downto 0);
+        Q  : out std_logic_vector (3 downto 0));
 end MUX_8_way_4_bit;
 
 architecture Behavioral of MUX_8_way_4_bit is
     component Decoder_3_to_8
-        port(
-            I : in std_logic_vector;
+        port (
+            I  : in std_logic_vector;
             EN : in std_logic;
-            Y : out std_logic_vector);
+            Y  : out std_logic_vector);
     end component;
-    signal I0 : std_logic_vector (2 downto 0);
+    signal I0  : std_logic_vector (2 downto 0);
     signal EN0 : std_logic;
-    signal X: std_logic_vector (7 downto 0);
+    signal X   : std_logic_vector (7 downto 0);
 begin
     Decoder_3_to_8_0 : Decoder_3_to_8
-        port map(
-            I => I0,
-            EN => EN0,
-            Y => X);
-    EN0 <= '1';
-    I0 <= S;
-    Q(0) <= (R0(0) AND X(0)) OR (R1(0) AND X(1)) OR (R2(0) AND X(2)) OR (R3(0) AND X(3)) OR (R4(0) AND X(4)) OR (R5(0) AND X(5)) OR (R6(0) AND X(6)) OR (R7(0) AND X(7)); 
-    Q(1) <= (R0(1) AND X(0)) OR (R1(1) AND X(1)) OR (R2(1) AND X(2)) OR (R3(1) AND X(3)) OR (R4(1) AND X(4)) OR (R5(1) AND X(5)) OR (R6(1) AND X(6)) OR (R7(1) AND X(7)); 
-    Q(2) <= (R0(2) AND X(0)) OR (R1(2) AND X(1)) OR (R2(2) AND X(2)) OR (R3(2) AND X(3)) OR (R4(2) AND X(4)) OR (R5(2) AND X(5)) OR (R6(2) AND X(6)) OR (R7(2) AND X(7)); 
-    Q(3) <= (R0(3) AND X(0)) OR (R1(3) AND X(1)) OR (R2(3) AND X(2)) OR (R3(3) AND X(3)) OR (R4(3) AND X(4)) OR (R5(3) AND X(5)) OR (R6(3) AND X(6)) OR (R7(3) AND X(7)); 
+    port map
+    (
+        I  => I0,
+        EN => EN0,
+        Y  => X);
+    EN0  <= '1';
+    I0   <= S;
+    Q(0) <= (R0(0) and X(0)) or (R1(0) and X(1)) or (R2(0) and X(2)) or (R3(0) and X(3)) or (R4(0) and X(4)) or (R5(0) and X(5)) or (R6(0) and X(6)) or (R7(0) and X(7));
+    Q(1) <= (R0(1) and X(0)) or (R1(1) and X(1)) or (R2(1) and X(2)) or (R3(1) and X(3)) or (R4(1) and X(4)) or (R5(1) and X(5)) or (R6(1) and X(6)) or (R7(1) and X(7));
+    Q(2) <= (R0(2) and X(0)) or (R1(2) and X(1)) or (R2(2) and X(2)) or (R3(2) and X(3)) or (R4(2) and X(4)) or (R5(2) and X(5)) or (R6(2) and X(6)) or (R7(2) and X(7));
+    Q(3) <= (R0(3) and X(0)) or (R1(3) and X(1)) or (R2(3) and X(2)) or (R3(3) and X(3)) or (R4(3) and X(4)) or (R5(3) and X(5)) or (R6(3) and X(6)) or (R7(3) and X(7));
 
 end Behavioral;
