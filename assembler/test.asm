@@ -1,8 +1,8 @@
-0: MVI R1, 3      ; Load the immediate value 3 into register R1 (Loop Counter)
-1: CLR R2         ; Clear register R2 to act as our accumulator
-2: INC R2         ; [LOOP START] Increment the accumulator R2 by 1
-3: DEC R1         ; Decrement the loop counter R1 by 1
-4: JZR R1, 6      ; Branch to instruction 6 if R1 is zero
-5: JMP 2          ; Unconditionally jump back to instruction 2 (Loop again)
-6: MUL2 R2        ; [LOOP EXIT] Multiply R2 by 2
-7: NOP            ; No operation to safely end the program
+MOVI R7, 0   ; R7 = 0
+MOVI R2, 3   ; R2 = 3 (Counter)
+MOVI R3, 1   ; R3 = 1
+NEG R3       ; R3 = -1
+ADD R7, R2   ; R7 = R7 + R2
+ADD R2, R3   ; R2 = R2 - 1
+JZR R2, 6    ; If R2 = 0, Infinite Loop
+JZR R0, 4    ; Jump to line 5 (Repeat loop)

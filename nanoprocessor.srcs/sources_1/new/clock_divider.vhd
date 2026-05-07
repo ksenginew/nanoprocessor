@@ -4,7 +4,7 @@
 -- 
 -- Create Date: 04/29/2026 05:03:59 PM
 -- Design Name: 
--- Module Name: clock_divider - Behavioral
+-- Module Name: Clock_Divider - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -28,33 +28,27 @@ use IEEE.STD_LOGIC_1164.all;
 -- any Xilinx leaf cells in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
-entity clock_divider is
+entity Clock_Divider is
     port (
-        clk_100MHz : in std_logic; -- Your W5 pin
-        reset      : in std_logic;
-        clk_1Hz    : out std_logic); -- Your new slow clock
-end clock_divider;
+        clk_in  : in std_logic;
+        clk_out : out std_logic);
+end Clock_Divider;
 
-architecture Behavioral of clock_divider is
-    -- Signal to hold the current count
-    signal count : integer range 0 to 49999999 := 0;
-    -- Signal to hold the current state of the new clock
-    signal tmp_clk : std_logic := '0';
+architecture Behavioral of Clock_Divider is
+    signal count      : integer range 0 to 49999999 := 0;
+    signal clk_status : std_logic                   := '0';
 begin
-    process (clk_100MHz, reset)
-    begin
-        if reset = '1' then
-            count   <= 0;
-            tmp_clk <= '0';
-        elsif rising_edge(clk_100MHz) then
-            if count = 49999999 then
-                tmp_clk <= not tmp_clk; -- Toggle the clock state
-                count   <= 0; -- Reset the counter
+    process (clk_in) begin
+        if rising_edge(clk_in) then
+           -- if count = 1 then
+           if count = 49999999 then
+                clk_status <= not clk_status;
+                count      <= 0;
             else
                 count <= count + 1;
             end if;
         end if;
     end process;
 
-    clk_1Hz <= tmp_clk;
+    clk_out <= clk_status;
 end Behavioral;

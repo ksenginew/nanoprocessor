@@ -135,11 +135,10 @@ architecture Behavioral of Nanoprocessor is
             Q : out std_logic_vector (3 downto 0));
     end component;
 
-    component clock_divider is
+    component Clock_Divider is
         port (
-            clk_100MHz : in std_logic;
-            reset      : in std_logic;
-            clk_1Hz    : out std_logic);
+            clk_in  : in std_logic;
+            clk_out : out std_logic);
     end component;
 
     component LUT_16_7 is
@@ -186,12 +185,11 @@ architecture Behavioral of Nanoprocessor is
     signal Mux_In : std_logic_vector (3 downto 0);
 begin
 
-    Clock : clock_divider
+    Clock : Clock_Divider
     port map
     (
-        clk_100MHz => Clk,
-        clk_1Hz    => Slow_Clk,
-        reset      => Reset
+        clk_in  => Clk,
+        clk_out => Slow_Clk
     );
     PC_Adder_Comp : Adder3bits
     port map

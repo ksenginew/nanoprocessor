@@ -38,41 +38,45 @@ entity PC is
 end PC;
 
 architecture Structural of PC is
-    component DFF
+    component D_FF
         port (
-            D     : in std_logic;
-            CLK   : in std_logic;
-            RESET : in std_logic;
-            Q     : out std_logic
+            D   : in std_logic;
+            Res : in std_logic;
+            Clk : in std_logic;
+            EN  : in std_logic;
+            Q   : out std_logic
         );
     end component;
 
 begin
-    FF0 : DFF
+    FF0 : D_FF
     port map
     (
-        D     => PC_in(0),
-        CLK   => CLK,
-        RESET => RESET,
-        Q     => PC_out(0)
+        D   => PC_in(0),
+        Res => RESET,
+        CLK => CLK,
+        EN  => '1',
+        Q   => PC_out(0)
     );
 
-    FF1 : DFF
+    FF1 : D_FF
     port map
     (
-        D     => PC_in(1),
-        CLK   => CLK,
-        RESET => RESET,
-        Q     => PC_out(1)
+        D   => PC_in(1),
+        Res => RESET,
+        CLK => CLK,
+        EN  => '1',
+        Q   => PC_out(1)
     );
 
-    FF2 : DFF
+    FF2 : D_FF
     port map
     (
-        D     => PC_in(2),
-        CLK   => CLK,
-        RESET => RESET,
-        Q     => PC_out(2)
+        D   => PC_in(2),
+        Res => RESET,
+        CLK => CLK,
+        EN  => '1',
+        Q   => PC_out(2)
     );
 
 end Structural;
