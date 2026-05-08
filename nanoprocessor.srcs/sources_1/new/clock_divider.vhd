@@ -29,19 +29,20 @@ use IEEE.STD_LOGIC_1164.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 entity Clock_Divider is
+    generic (
+        PRELOAD_VAL : integer := 49999999);
     port (
         clk_in  : in std_logic;
         clk_out : out std_logic);
 end Clock_Divider;
 
 architecture Behavioral of Clock_Divider is
-    signal count      : integer range 0 to 49999999 := 0;
+    signal count      : integer range 0 to PRELOAD_VAL := 0;
     signal clk_status : std_logic                   := '0';
 begin
     process (clk_in) begin
         if rising_edge(clk_in) then
-           -- if count = 1 then
-           if count = 49999999 then
+            if count = PRELOAD_VAL then
                 clk_status <= not clk_status;
                 count      <= 0;
             else

@@ -44,7 +44,7 @@ architecture Behavioral of TB_MUX_2_way_3_bit is
     signal A, B, Q : std_logic_vector(2 downto 0);
     signal C       : std_logic;
 begin
-    uut : MUX_2_way_3_bitPORT
+    uut : MUX_2_way_3_bit PORT
     map(
     A => A,
     B => B,

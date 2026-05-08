@@ -1,0 +1,82 @@
+NANOPROCESSOR OPERATION MANUAL
+CS1050 - Nanoprocessor Design Competition
+
+Instead of creating 2 versions (one optimized for lowest gate count and one with enhanced features), we created only one with very low gate count and additional features. So we present that one for both.
+
+OVERVIEW
+The Nanoprocessor is a 4-bit synchronous circuit designed to execute a specific
+instruction set (MOVI, ADD, NEG, JZR). It utilizes an 8-register bank, an
+Add/Subtract unit, and a ROM-based instruction storage system.
+
+HARDWARE MAPPING (BASYS 3)
+Based on the provided constraints (Basys3.xdc), the following pins are allocated:
+
+A. Clock Signal
+
+Signal: Clk
+
+Pin: W5 (On-board 100MHz Oscillator)
+
+B. Control Inputs
+
+Reset: Pin U18 (Center Push Button)
+
+Action: Resets Program Counter (PC) to 000 and clears all Registers (R0-R7).
+
+C. Visual Outputs (LEDs)
+
+Register R7 Value (Result):
+
+Out_LED[0] (LD0): Pin U16
+
+Out_LED[1] (LD1): Pin E19
+
+Out_LED[2] (LD2): Pin U19
+
+Out_LED[3] (LD3): Pin V19
+
+Status Flags:
+
+Overflow/Carry (LD4): Pin W18
+
+Zero Flag (LD5): Pin U15
+
+D. Seven Segment Display (Mapping for R7 Output)
+
+Cathodes (Segments a-g):
+
+W7, W6, U8, V8, U5, V5, U7
+
+Anodes (Digit Selection):
+
+U2, U4, V4, W4
+
+PRACTICAL OPERATION INSTRUCTIONS
+
+POWER ON: Ensure the Basys 3 board is connected and the bitstream is loaded.
+
+INITIALIZE: Press the Center Push Button (U18) to reset the processor.
+All LEDs should turn off, and the 7-segment display should show '0'.
+
+EXECUTION: The processor will begin fetching instructions from ROM starting
+at Address 0. Observe the LEDs changing as the program executes.
+
+SPEED: If the clock is correctly scaled, you should see the binary accumulation on the LEDs every second.
+
+The execution will infinitely loop once Register R7 reaches the value 6 (Binary: 0110) (Looks like program is halted).
+
+EXPECTED BEHAVIOR
+
+R0 Behavior: Register R0 is hardcoded to "0000". Any attempt to write to it will be ignored by the hardware.
+
+2's Complement: The 4-bit Add/Sub unit operates on signed integers.
+
+JZR Logic: When a JZR instruction is encountered, the PC will only jump
+to the specified address if the source register contains exactly "0000".
+
+Flags:
+
+The Zero flag (Pin U15) lights up when the ALU result is zero.
+
+The Overflow flag (Pin W18) lights up if the result exceeds the 4-bit
+signed range (-8 to +7).

@@ -38,6 +38,8 @@ end tb_Nanoprocessor;
 architecture Behavioral of tb_Nanoprocessor is
 
 component Nanoprocessor
+    generic (
+        CLK_DIV_PRELOAD : integer := 49999999);
     port (
         Reset   : in std_logic;
         Clk     : in std_logic;
@@ -61,7 +63,10 @@ component Nanoprocessor
     constant Clk_period : time := 10 ns;
 begin
 
-    uut: Nanoprocessor port map (
+    uut: Nanoprocessor
+    generic map (
+        CLK_DIV_PRELOAD => 1)
+    port map (
         Reset    => Reset,
         Clk      => Clk,
         Out_LED  => Out_LED,

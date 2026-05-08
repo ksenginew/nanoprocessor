@@ -30,6 +30,8 @@ use IEEE.STD_LOGIC_1164.all;
 --use UNISIM.VComponents.all;
 
 entity Nanoprocessor is
+    generic (
+        CLK_DIV_PRELOAD : integer := 49999999);
     port (
         Reset    : in std_logic;
         Clk      : in std_logic;
@@ -136,6 +138,8 @@ architecture Behavioral of Nanoprocessor is
     end component;
 
     component Clock_Divider is
+        generic (
+            PRELOAD_VAL : integer := 49999999);
         port (
             clk_in  : in std_logic;
             clk_out : out std_logic);
@@ -186,6 +190,10 @@ architecture Behavioral of Nanoprocessor is
 begin
 
     Clock : Clock_Divider
+    generic map
+    (
+        PRELOAD_VAL => CLK_DIV_PRELOAD
+    )
     port map
     (
         clk_in  => Clk,

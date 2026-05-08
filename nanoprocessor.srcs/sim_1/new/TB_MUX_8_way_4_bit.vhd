@@ -50,7 +50,7 @@ architecture Behavioral of TB_MUX_8_way_4_bit is
     signal S                                 : std_logic_vector(2 downto 0);
     signal Q, R0, R1, R2, R3, R4, R5, R6, R7 : std_logic_vector (3 downto 0);
 begin
-    uut : MUX_8_way_4_bitPORT
+    uut : MUX_8_way_4_bit PORT
     map(
     S  => S,
     R0 => R0,
