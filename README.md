@@ -136,3 +136,12 @@ If you just want to inspect the project, start with these files:
 - `assembler/test.asm`
 
 If you want to verify behavior, begin with `tb_Nanoprocessor.vhd` and the module testbenches in `nanoprocessor.srcs/sim_1/new/`.
+
+## Team Credits
+
+This project was completed by a 4-member team. Core responsibilities were split as follows:
+
+- K.A.K.K. Santhusa - Instruction Decoder, Program ROM, and custom Python assembler.
+- W. A. A. T. Silva - Multiplexers and decoders, including manual basic-gate Boolean optimization.
+- G.Y.S Sanjaya - Arithmetic units, including the adders/subtractors, and the Program Counter.
+- P.D.Y Sewwandi - Register file design, project documentation, and report writing.
